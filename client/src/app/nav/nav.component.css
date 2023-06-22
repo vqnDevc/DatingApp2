@@ -1,0 +1,7 @@
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}

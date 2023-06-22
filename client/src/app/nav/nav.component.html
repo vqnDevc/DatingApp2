@@ -2,32 +2,41 @@
   <div class="container">
     <a class="navbar-brand" routerLink="/">Dating App</a>
 
-    <ul class="navbar-nav me-auto mb-2 mb-md-0" >
+    <ul class="navbar-nav me-auto mb-2 mb-md-0">
       <ng-container *ngIf="accountService.currentUser$ | async">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
+          <a class="nav-link" routerLink="/members" routerLinkActive="active"
+            >Matches</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active"
+            >Lists</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/messages" routerLinkActive="active">Mesages</a>
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+            >Mesages</a
+          >
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" (click)="logout()" routerLink="/">Logout</a>
-        </li>       
+        </li> -->
       </ng-container>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
-      </li>   
+        <a class="nav-link" routerLink="/errors" routerLinkActive="active"
+          >Errors</a
+        >
+      </li>
     </ul>
 
-    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
-      <a class="dropdown-toggle text-light" style="text-decoration: none;" >Welcome {{user.username | titlecase}}</a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item">Edit Profile</a>
-        <a class="dropdown-item" (click)="logout()">Logout</a>
-      </div>
+    <div class="dropdown" *ngIf="accountService.currentUser$ | async as user">
+      <a class="dropdown-toggle text-light" style="text-decoration: none" (click)="toggleDropdown()">Welcome user</a>
+        <div class="dropdown-menu mt-3" [class.show]="isDropdownOpen">
+          <a class="dropdown-item">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
     </div>
 
     <form
