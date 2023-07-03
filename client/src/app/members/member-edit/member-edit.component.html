@@ -1,0 +1,79 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <h1>Your Profile</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>Information: </strong> You have made changes. Any unsaved changes will be lost.
+        </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="img">
+          <img
+            src="{{ member.photoUrl || './assets/user.png' }}"
+            alt="{{ member.knownAs }}"
+            class="card-img-top img-thumbnail"
+          />
+        </div>
+        <div class="card-body">
+          <div>
+            <strong>Location:</strong>
+            <p>{{ member.city }}, {{ member.country }}</p>
+          </div>
+          <div>
+            <strong>Age:</strong>
+            <p>{{ member.age }}</p>
+          </div>
+          <div>
+            <strong>Last Active:</strong>
+            <p>{{ member.lastActive }}</p>
+          </div>
+          <div>
+            <strong>Member since:</strong>
+            <p>{{ member.created }}</p>
+          </div>
+        </div>
+        <div class="card-footer d-grid gap-2">
+            <button class="btn btn-success" [disabled]="!editForm.dirty" form="editForm" type="submit">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-8">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" (click)="openTab('tab1')" [class.active]="activeTab === 'tab1'">
+            <span>About {{ member.knownAs }}</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="openTab('tab2')" [class.active]="activeTab === 'tab2'">
+            <span>Edit Photos</span></a>
+        </li>
+
+      </ul>
+  
+      <div id="tab1" [style.display]="activeTab === 'tab1' ? 'block' : 'none'" class="tab-content">
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+            <h3>Description</h3>
+            <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
+            <h3 class="mt-2">Looking for</h3>
+            <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="6"></textarea>
+            <h3 class="mt-2">Interests</h3>
+            <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="6"></textarea>
+            <h3 class="mt-2">Location Details: </h3>
+            <div class="d-flex flex-row align-items-center">
+                <label for="city">City: </label>
+                <input type="text" [(ngModel)]="member.city" name="city" class="form-control mx-2">
+                <label for="country">Country: </label>
+                <input type="text" [(ngModel)]="member.country" name="country" class="form-control mx-2">
+            </div>
+        </form>
+      </div>
+  
+      <div id="tab2" class="tab-content">
+        <p>Photo Edit will go here</p>
+      </div>
+    </div>
+  </div>
+  

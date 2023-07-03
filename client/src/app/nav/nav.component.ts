@@ -24,12 +24,12 @@ export class NavComponent {
   login() {
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl('/members');
-      this.isDropdownOpen = false;
     })
   }
 
   logout() {
     this.accountService.logout();
+    this.isDropdownOpen = false;
     this.router.navigateByUrl('/');
   }
 

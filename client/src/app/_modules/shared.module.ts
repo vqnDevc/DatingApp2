@@ -10,10 +10,10 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
-    })
+    }),
   ],
   exports: [
-    ToastrModule
+    ToastrModule,
   ]
 })
 export class SharedModule { }

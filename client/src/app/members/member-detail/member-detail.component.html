@@ -1,1 +1,110 @@
-<p>member-detail works!</p>
+<div class="row" *ngIf="member">
+  <div class="col-4">
+    <div class="card">
+      <div class="img">
+        <img
+          src="{{ member.photoUrl || './assets/user.png' }}"
+          alt="{{ member.knownAs }}"
+          class="card-img-top img-thumbnail"
+        />
+      </div>
+      <div class="card-body">
+        <div>
+          <strong>Location:</strong>
+          <p>{{ member.city }}, {{ member.country }}</p>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <p>{{ member.age }}</p>
+        </div>
+        <div>
+          <strong>Last Active:</strong>
+          <p>{{ member.lastActive }}</p>
+        </div>
+        <div>
+          <strong>Member since:</strong>
+          <p>{{ member.created }}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group d-flex">
+          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-success">Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="openTab('tab1')"
+          [class.active]="activeTab === 'tab1'"
+          ><span>About {{ member.knownAs }}</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="openTab('tab2')"
+          [class.active]="activeTab === 'tab2'"
+          ><span>Interests</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="openTab('tab3')"
+          [class.active]="activeTab === 'tab3'"
+          ><span>Photos</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          (click)="openTab('tab4')"
+          [class.active]="activeTab === 'tab4'"
+          ><span>Messages</span></a
+        >
+      </li>
+    </ul>
+
+    <div
+      id="tab1"
+      [style.display]="activeTab === 'tab1' ? 'block' : 'none'"
+      class="tab-content"
+    >
+      <h4>Description</h4>
+      <p>{{ member.introduction }}</p>
+      <h4>Looking for</h4>
+      <p>{{ member.lookingFor }}</p>
+    </div>
+
+    <div id="tab2" class="tab-content">
+      <h4>Interests</h4>
+      <p>{{ member.interests }}</p>
+    </div>
+
+    <!-- Photo -->
+    <div id="tab3" class="tab-content">
+      <section class="gallery">
+        <div class="container">
+          <div class="img-container">
+             <img src="{{ member.photoUrl || './assets/user.png' }}" alt="Image" id="preview" >
+             <div class="img-prev text-center">
+              <div class="img-slide active" *ngFor="let image of memberImages" (click)="imageChange($event)">
+                <img src="{{ image || './assets/user.png' }}" alt="{{member.knownAs}}">
+             </div>
+          </div>
+        </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="tab4" class="tab-content">
+      <p>Messages will go here</p>
+    </div>
+  </div>
+</div>

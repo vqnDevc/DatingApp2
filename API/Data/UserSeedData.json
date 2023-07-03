@@ -3,7 +3,7 @@
     "UserName": "lisa",
     "Gender": "female",
     "DateOfBirth": "1954-06-25",
-    "KnownAs": "Claudine",
+    "KnownAs": "lisa",
     "Created": "2019-09-02",
     "LastActive": "2020-05-26",
     "Introduction": "Ex non esse exercitation do do ex. Lorem do quis non ullamco elit consectetur occaecat. Eu aliquip aute sunt culpa quis mollit magna. In incididunt eiusmod quis labore anim ut eu minim. Id consequat officia non sint dolor consectetur cillum ut aliquip. Consequat do ex consequat nisi quis.\r\n",
@@ -13,7 +13,7 @@
     "Country": "Martinique",
     "Photos": [
       {
-        "Url": "https://randomuser.me/api/portraits/women/16.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/31.jpg",
         "IsMain": true
       }
     ]
@@ -32,7 +32,7 @@
     "Country": "Iran",
     "Photos": [
       {
-        "Url": "https://randomuser.me/api/portraits/women/87.jpg",
+        "Url": "https://randomuser.me/api/portraits/women/77.jpg",
         "IsMain": true
       }
     ]
