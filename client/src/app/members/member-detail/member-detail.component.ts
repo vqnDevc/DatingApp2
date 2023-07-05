@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 
@@ -12,12 +13,37 @@ import { MembersService } from 'src/app/_services/members.service';
 export class MemberDetailComponent implements OnInit {
   member : Member | undefined
   activeTab : string = 'tab1'
-  memberImages: string[] = [];
+  galleryOptions: NgxGalleryOptions[] = [];
+  galleryImages: NgxGalleryImage[] = [];
 
   constructor( private memberService: MembersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
       this.loadMember();
+
+      this.galleryOptions = [
+        {
+          width: '500px',
+          height: '500px',
+          imagePercent: 100,
+          thumbnailsColumns: 4,
+          imageAnimation: NgxGalleryAnimation.Slide,
+          preview: false
+        }
+      ]
+  }
+
+  getImages() {
+    if (!this.member) return [];
+    const imageUrls = [];
+    for (const photo of this.member.photos) {
+      imageUrls.push({
+        small: photo.url,
+        medium: photo.url,
+        big: photo.url
+      })
+    }
+    return imageUrls;
   }
 
   loadMember() {
@@ -26,7 +52,7 @@ export class MemberDetailComponent implements OnInit {
     this.memberService.getMember(username).subscribe({
       next: member => {
         this.member = member;
-        this.memberImages = this.getImages();
+        this.galleryImages = this.getImages();
       }
     })
   }
@@ -42,30 +68,4 @@ export class MemberDetailComponent implements OnInit {
       (selectedTab as HTMLElement).style.display = "block";
     }
   }
-
-  getImages() {
-    if(!this.member) return [];
-    const imageUrls = [];
-    for (const photo of this.member.photos)
-    {
-      imageUrls.push(photo.url);
-    }
-    return imageUrls;
-  }
-
-  @HostListener('click')
-  imageChange(event: MouseEvent) {
-    const target = event.target as HTMLImageElement;
-    const src = target.src;
-    const prev = document.getElementById("preview") as HTMLImageElement;
-    prev.src = src;
-    
-    const imageSlides = document.getElementsByClassName("img-slide");
-    for (let i = 0; i < imageSlides.length; i++) {
-      imageSlides[i].classList.remove("active");
-    }
-    
-    target.parentElement?.classList.add("active");
-  }
-
 }

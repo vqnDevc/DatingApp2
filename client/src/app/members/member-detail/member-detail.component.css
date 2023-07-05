@@ -72,7 +72,7 @@
 }
 
 
-.img-container {
+/* .img-container {
   width: 540px;
   height: 350px;
 }
@@ -94,7 +94,6 @@
 
 .img-slide {
   float: left;
-  /* display: inline-block; */
   width: 19.6%;
   margin: 0 1px;
   cursor: pointer;
@@ -104,4 +103,4 @@
 .img-slide.active {
   border: 2px solid #e95420;
   opacity: 1;
-}
+} */

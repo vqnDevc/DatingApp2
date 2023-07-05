@@ -5,3 +5,9 @@
 .dropdown-menu {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
+
+img {
+    max-height: 50px;
+    border: 2px solid #fff;
+    display: inline;
+}

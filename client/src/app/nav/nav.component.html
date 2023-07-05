@@ -19,9 +19,6 @@
             >Mesages</a
           >
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" (click)="logout()" routerLink="/">Logout</a>
-        </li> -->
       </ng-container>
       <li class="nav-item">
         <a class="nav-link" routerLink="/errors" routerLinkActive="active"
@@ -31,7 +28,8 @@
     </ul>
 
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user">
-      <a class="dropdown-toggle text-light" style="text-decoration: none" (click)="toggleDropdown()">Welcome {{user.username | titlecase}}</a>
+      <img src="{{user.photoUrl}}" alt="{{user.username}}">
+      <a class="dropdown-toggle text-light text-decoration-none ms-2" (click)="toggleDropdown()">Welcome {{user.username | titlecase}}</a>
         <div class="dropdown-menu mt-3" [class.show]="isDropdownOpen">
           <a class="dropdown-item" (click)=" toggleDropdown()" routerLink="member/edit">Edit Profile</a>
           <div class="dropdown-divider"></div>
