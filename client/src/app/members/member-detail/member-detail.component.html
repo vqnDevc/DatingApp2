@@ -1,4 +1,4 @@
-<div class="row" *ngIf="member">
+<div class="row">
   <div class="col-4">
     <div class="card">
       <div class="img">
@@ -19,7 +19,7 @@
         </div>
         <div>
           <strong>Last Active:</strong>
-          <p>{{ member.lastActive | timeago}}</p>
+          <p >{{ member.lastActive | timeago}}</p>
         </div>
         <div>
           <strong>Member since:</strong>
@@ -29,7 +29,7 @@
       <div class="card-footer">
         <div class="btn-group d-flex">
           <button class="btn btn-primary">Like</button>
-          <button class="btn btn-success">Message</button>
+          <button class="btn btn-success" (click)="openTab('tab4')">Message</button>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@
     </div>
 
     <div id="tab4" class="tab-content">
-      <p>Messages will go here</p>
+        <app-member-messages [messages]="messages" [username]="member.username"></app-member-messages>
     </div>
   </div>
 </div>
