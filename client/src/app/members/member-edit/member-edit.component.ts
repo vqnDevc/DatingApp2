@@ -13,28 +13,30 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-  @ViewChild('editForm') editForm!: NgForm;
+  @ViewChild('editForm') editForm: NgForm | undefined;
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any) {
-    if (this.editForm.dirty) {
+    if (this.editForm?.dirty) {
       $event.returnValue = true;
     }
   }
-  member!: Member;
-  user!: User;
-  activeTab : string = 'tab1'
+  member: Member | undefined;
+  user: User | null = null;
 
   constructor(private accountService: AccountService, private memberService: MembersService, 
-    private toastr: ToastrService) { 
-      this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user!);  
+      private toastr: ToastrService) { 
+    this.accountService.currentUser$.pipe(take(1)).subscribe({
+      next: user => this.user = user
+    })
   }
 
   ngOnInit(): void {
-      this.loadMember();
+    this.loadMember();
   }
 
   loadMember() {
-    this.memberService.getMember(this.user.username).subscribe(member => {
-      this.member = member;
+    if (!this.user) return;
+    this.memberService.getMember(this.user.username).subscribe({
+      next: member => this.member = member
     })
   }
 
@@ -45,17 +47,5 @@ export class MemberEditComponent implements OnInit {
         this.editForm?.reset(this.member);
       }
     })
-  }
-
-  openTab(tabName: string): void {
-    this.activeTab = tabName;
-    const tabContents = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabContents.length; i++) {
-      (tabContents[i] as HTMLElement).style.display = "none";
-    }
-    const selectedTab = document.getElementById(tabName);
-    if (selectedTab) {
-      (selectedTab as HTMLElement).style.display = "block";
-    }
   }
 }

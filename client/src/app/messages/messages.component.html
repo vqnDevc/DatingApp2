@@ -2,7 +2,7 @@
     <div class="btn-group" name="container">
         <button 
             class="btn btn-primary"
-            btnRadio='Unread'
+            btnRadio="Unread"
             [(ngModel)]="container"
             (click)="loadMessages()"
         >
@@ -10,7 +10,7 @@
         </button>
         <button 
             class="btn btn-primary"
-            btnRadio='Inbox'
+            btnRadio="Inbox"
             [(ngModel)]="container"
             (click)="loadMessages()"
         >
@@ -18,7 +18,7 @@
         </button>
         <button 
             class="btn btn-primary"
-            btnRadio='Outbox'
+            btnRadio="Outbox"
             [(ngModel)]="container"
             (click)="loadMessages()"
         >
@@ -42,11 +42,11 @@
             </tr>
         </thead>
         <tbody class="align-middle">
-            <tr [hidden]='loading' *ngFor="let message of messages"
+            <tr [hidden]="loading" *ngFor="let message of messages"
                 routerLink="{{container === 'Outbox' 
                     ? '/members/' + message.recipientUsername 
                     : '/members/' + message.senderUsername}}"
-                [queryParams]="{activeTab: 'tab4'}"
+                [queryParams]="{tab: 'Messages'}"
             >
                 <td>{{message.content}}</td>
                 <td>

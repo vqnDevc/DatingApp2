@@ -1,26 +1,7 @@
-.img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .img-thumbnail {
   margin: 25px;
   width: 85%;
   height: 85%;
-}
-
-.img-thumbnail {
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-  padding: 4px;
-  line-height: 1.5;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: all 0.2s ease-in-out;
-  box-sizing: border-box;
 }
 
 .card-body {
@@ -31,43 +12,4 @@
   padding: 10px 15px;
   background-color: #fff;
   border-top: none;
-}
-
-.tab-content {
-  display: none;
-}
-
-.nav-link {
-  cursor: pointer;
-  border: none;
-  position: relative;
-}
-
- .nav-link.active {
-  border-bottom: 4px solid #e95420;
-  position: relative;
-}
-
-.nav-link:hover:not(.nav-link.active) {
-    border: 0;
-    background: none !important;
-    color: #333333;
-    box-shadow: 0 4px #fbcdcf;
-}
-
-.nav-link>span {
-    position: relative;
-    font-weight: 500;
-}
-
-.nav-link:hover:not(.nav-link.active) > span {
-    top: -2px;
-}
-
-.tab-content {
-    margin-top: -3px;
-    background-color: #fff;
-    border: 0;
-    border-top: 1px solid #eee;
-    padding: 15px 0;
 }
